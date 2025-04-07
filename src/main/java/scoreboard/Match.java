@@ -8,70 +8,68 @@ import java.time.LocalDateTime;
 public class Match {
 
     private final long id;
-    private final String firstTeamName;
-    private final String secondTeamName;
-    private int firstTeamScore;
-    private int secondTeamScore;
+    private final String homeTeamName;
+    private final String awayTeamName;
+    private int homeTeamScore;
+    private int awayTeamScore;
 
     private final LocalDateTime creationTime;
 
-    private MatchStatus status;
 
-    public Match(long id, String firstTeam, String secondTeam, LocalDateTime creationTime){
+    public Match(long id, String homeTeam, String awayTeam, LocalDateTime creationTime) {
         this.id = id;
-        this.firstTeamName = firstTeam;
-        this.secondTeamName = secondTeam;
+        this.validateTeamName(homeTeam);
+        this.homeTeamName = homeTeam;
+        this.validateTeamName(awayTeam);
+        this.awayTeamName = awayTeam;
         this.creationTime = creationTime;
-        this.status = MatchStatus.ACTIVE;
-        this.firstTeamScore = 0;
-        this.secondTeamScore = 0;
+        this.homeTeamScore = 0;
+        this.awayTeamScore = 0;
     }
 
     public long getId() {
         return this.id;
     }
 
-    MatchStatus getStatus() {
-        return this.status;
-    }
-
-    void setStatus(MatchStatus status) {
-        this.status = status;
-    }
-
     public LocalDateTime getCreationTime() {
         return this.creationTime;
     }
 
-    public String getSecondTeamName() {
-        return this.secondTeamName;
+    public String getAwayTeamName() {
+        return this.awayTeamName;
     }
 
-    public String getFirstTeamName() {
-        return this.firstTeamName;
+    public String getHomeTeamName() {
+        return this.homeTeamName;
     }
 
-    public int getSecondTeamScore() {
-        return this.secondTeamScore;
+    public int getAwayTeamScore() {
+        return this.awayTeamScore;
     }
 
-    public int getFirstTeamScore() {
-        return this.firstTeamScore;
+    public int getHomeTeamScore() {
+        return this.homeTeamScore;
     }
 
-    public void setSecondTeamScore(int secondTeamScore) {
-        this.validateScore(secondTeamScore);
-        this.secondTeamScore = secondTeamScore;
+    public void setAwayTeamScore(int awayTeamScore) {
+        this.validateScore(awayTeamScore);
+        this.awayTeamScore = awayTeamScore;
     }
 
-    public void setFirstTeamScore(int firstTeamScore) {
-        this.validateScore(firstTeamScore);
-        this.firstTeamScore = firstTeamScore;
+    public void setHomeTeamScore(int homeTeamScore) {
+        this.validateScore(homeTeamScore);
+        this.homeTeamScore = homeTeamScore;
     }
 
-    private void validateScore(int score){
-        if(score < 0){
+    private void validateScore(int score) {
+        if (score < 0) {
             throw new IllegalArgumentException("Team score must be above 0");
+        }
+    }
+
+    private void validateTeamName(String teamName) {
+        if (teamName == null) {
+            throw new IllegalArgumentException("Team name must be provided");
         }
     }
 }

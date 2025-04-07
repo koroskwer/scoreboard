@@ -14,12 +14,12 @@ class MatchFactory {
     private final Clock clock;
     private final AtomicLong idCounter;
 
-    MatchFactory(Clock clock, int initialValue){
+    MatchFactory(Clock clock, int initialValue) {
         this.clock = clock;
         this.idCounter = new AtomicLong(initialValue);
     }
 
-    Match createMatch(String firstTeam, String secondTeam) {
-        return new Match(idCounter.getAndIncrement(), firstTeam, secondTeam, LocalDateTime.now(clock));
+    Match createMatch(String homeTeam, String awayTeam) {
+        return new Match(idCounter.getAndIncrement(), homeTeam, awayTeam, LocalDateTime.now(clock));
     }
 }
