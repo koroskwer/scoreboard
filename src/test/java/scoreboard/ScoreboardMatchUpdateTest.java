@@ -11,8 +11,6 @@ public class ScoreboardMatchUpdateTest {
 
     private final static String HOME_TEAM_ONE = "Legia Warszawa";
     private final static String AWAY_TEAM_ONE = "Lech Poznań";
-    private final static String HOME_TEAM_TWO = "Zagłębie Lubin";
-    private final static String AWAY_TEAM_TWO = "Pogoń Grodzisk";
 
     @Test
     public void testMatchBeingUpdatedWithNewScore() {
@@ -36,5 +34,25 @@ public class ScoreboardMatchUpdateTest {
 
         // When
         Assertions.assertThrows(IllegalArgumentException.class, () -> scoreboard.updateMatch(HOME_TEAM_ONE, AWAY_TEAM_ONE, 1, 2));
+    }
+
+    @Test
+    public void testUpdateThrowingExceptionWhenTryingToUpdateToANegativeScoreForHomeTeam() {
+        // Given
+        Scoreboard scoreboard = ScoreboardConfiguration.createTestConfiguration();
+
+        // When
+        scoreboard.startMatch(HOME_TEAM_ONE, AWAY_TEAM_ONE);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> scoreboard.updateMatch(HOME_TEAM_ONE, AWAY_TEAM_ONE, -1, 2));
+    }
+
+    @Test
+    public void testUpdateThrowingExceptionWhenTryingToUpdateToANegativeScoreForAwayTeam() {
+        // Given
+        Scoreboard scoreboard = ScoreboardConfiguration.createTestConfiguration();
+
+        // When
+        scoreboard.startMatch(HOME_TEAM_ONE, AWAY_TEAM_ONE);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> scoreboard.updateMatch(HOME_TEAM_ONE, AWAY_TEAM_ONE, 1, -2));
     }
 }

@@ -26,7 +26,7 @@ public class MatchKeyTransformerTest {
         String result = this.transformer.transform(sampleMatch);
 
         // Then
-        assertEquals(result, "Legia Warszawa versus Lech Poznań");
+        assertEquals(result, "Legia Warszawa - Lech Poznań");
 
     }
 }

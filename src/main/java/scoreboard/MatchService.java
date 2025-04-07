@@ -1,11 +1,18 @@
 package scoreboard;
 
+
 import repository.Repository;
 
 import java.util.Comparator;
 import java.util.List;
 
+
+/**
+ * Service used to handle and distribute match management requests coming from Scoreboard API
+ */
+//TODO - consider reworking match management into event-driven architecture instead
 class MatchService {
+
     private final MatchFactory matchFactory;
     private final MatchKeyTransformer matchKeyTransformer;
     private final Repository<String, Match> repository;
@@ -22,6 +29,7 @@ class MatchService {
     }
 
     void finishMatch(String homeTeamName, String awayTeamName) {
+        //TODO - instead of deleting a match, change it's status and/or move to a different repository
         this.repository.remove(this.matchKeyTransformer.transform(homeTeamName, awayTeamName));
     }
 
