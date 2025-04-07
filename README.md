@@ -1,6 +1,6 @@
-# Scoreboard library
+# Scoreboard
 
-### Assumptions and architectural idea
+### Assumptions and architectural ideas
 
 * Given a pair of teams can play a single match at once.
 * Matches are identified both by an unique identifier and a pair of teams who play the match, but as requirements
@@ -11,7 +11,7 @@
 
 ### How to use the scoreboard
 
-1. **Initialize Scoreboard**
+1. **Initialize the Scoreboard**
    ```java
    Scoreboard scoreboard = ScoreboardConfiguration.createProdConfiguration();
 
