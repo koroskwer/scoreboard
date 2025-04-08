@@ -31,11 +31,11 @@ class InMemoryConcurrentMatchRepository<String, Match> implements Repository<Str
 
     @Override
     public Match load(String key) {
-        if (this.map.containsKey(key)) {
-            return this.map.get(key);
-        } else {
+        Match match = this.map.get(key);
+        if (match == null) {
             throw new IllegalArgumentException("Match with the key %s is not present in the repository.".formatted(key));
         }
+        return match;
     }
 
     @Override

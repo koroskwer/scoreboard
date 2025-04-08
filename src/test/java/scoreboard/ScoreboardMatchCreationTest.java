@@ -67,6 +67,16 @@ public class ScoreboardMatchCreationTest {
     }
 
     @Test
+    public void testMatchCreationNotAcceptingTwoMatchesWithSameTeams() {
+        // Given
+        Scoreboard scoreboard = ScoreboardConfiguration.createTestConfiguration();
+
+        // When & Then
+        scoreboard.startMatch(HOME_TEAM_ONE, HOME_TEAM_TWO);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> scoreboard.startMatch(HOME_TEAM_ONE, HOME_TEAM_TWO));
+    }
+
+    @Test
     public void testMatchBeingCreatedWithCorrectTimestamp() {
         // Given
         Scoreboard scoreboard = ScoreboardConfiguration.createTestConfiguration(
